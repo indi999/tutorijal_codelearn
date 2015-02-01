@@ -6,7 +6,7 @@ class TodosController < ApplicationController
   end
   
   def delete
-    @todo_items = Todo.last.delete
+     Todo.last.delete
   end
   
   def add

@@ -1,6 +1,7 @@
 SharedTodoApp::Application.routes.draw do
   
   get "todos/index"
+  # get "todos#delete"
   match "todos/add" => "todos#add", :via => :post
   match "todos/delete" => "todos#delete", :as => :delete
 
