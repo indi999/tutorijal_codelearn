@@ -6,10 +6,10 @@
       <hr>
         
       <p>Add your todos here</p>
-        <%= form_tag("/todos/add", :method=>"post") do %>
-           <%= text_field_tag(:todo_text) %>
-           <%= submit_tag("Add todo", :class=>"btn") %>
-        <% end %>
+       <%= form_for @new_todo, :url => { :action => "add" }  do |f|  %>
+        <%= f.text_field  :todo_item %>
+        <%= f.submit "Add todo", class: "btn btn-primary" %>
+       <%end%>
          
           <% if !flash[:error].nil? %>
             <div class="alert alert-error">
@@ -17,13 +17,19 @@
               <strong><%= flash[:error] %></strong>
              </div>
           <% end %>
+
+          <% if flash[:success] %>
+               <div class="alert alert-success">
+               <button type="button" class="close" data-dismiss="alert" >×</button>
+               <strong><%= flash[:success] %></strong>
+               </div>
+         <%  end %>
           
        <p>All your todos here</p>   
       <div class="well">
         <% @todo_items.each do |t| %>
          <li> <%= t.todo_item %> </li>
         <% end %>
-
       </div> <!-- well -->
     </div> <!-- span4 -->
   </div> <!-- row -->
